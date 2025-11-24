@@ -1,0 +1,81 @@
+.ProjectContent {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  color: #e2e8f0;
+
+  &__title {
+    margin: 0 0 4px;
+    font-size: clamp(26px, 4.2vw, 36px);
+    font-weight: 800;
+    color: #f8fafc;
+    letter-spacing: -0.02em;
+  }
+
+  &__subtitle {
+    margin: 14px 0 4px;
+    font-size: clamp(20px, 3vw, 24px);
+    font-weight: 700;
+    color: #cbd5e1;
+  }
+
+  &__text {
+    margin: 0;
+    color: #cbd5e1;
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  &__figure {
+    margin: 10px 0;
+    background: #0b1220;
+    border: 1px solid rgba(51, 65, 85, 0.7);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  &__caption {
+    margin: 0;
+    padding: 12px 14px;
+    font-size: 13px;
+    color: #94a3b8;
+    background: rgba(15, 23, 42, 0.7);
+    border-top: 1px solid rgba(51, 65, 85, 0.6);
+  }
+
+  &__listBlock {
+    margin: 8px 0;
+    padding: 14px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(59, 130, 246, 0.35);
+    border-radius: 14px;
+  }
+
+  &__listTitle {
+    margin: 0 0 8px;
+    color: #bfdbfe;
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0 0 0 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__listItem {
+    color: #cbd5e1;
+    line-height: 1.6;
+    font-size: 14px;
+  }
+}

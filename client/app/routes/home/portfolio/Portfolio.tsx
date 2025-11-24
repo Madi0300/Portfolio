@@ -7,6 +7,7 @@ import {
   Smartphone,
   Zap,
 } from "lucide-react";
+import { Link } from "react-router";
 import style from "./Portfolio.module.scss";
 import { useReveal } from "../useReveal";
 
@@ -51,20 +52,20 @@ export default function Portfolio() {
                   <span className={style.Portfolio__tag}>React + Gemini API</span>
                 </div>
                 <p className={style.Portfolio__text}>
-                  Обучающая платформа, заменяющая репетитора. ИИ не просто дает шаблоны, а создает уникальные
-                  упражнения (SRS, эссе) под контекст пользователя.
+                  Пет-проект: платформа, которая генерирует упражнения (SRS, эссе) под контекст пользователя с помощью ИИ
+                  и сохраняет прогресс.
                 </p>
                 <div className={style.Portfolio__result}>
                   <Clock size={18} />
                   <p>
-                    <span className={style.Portfolio__resultAccent}>Результат:</span> Сократил время подготовки
-                    персонального задания для студента с 20 минут до 5 секунд.
+                    <span className={style.Portfolio__resultAccent}>Статус:</span> Прототип собирает черновик задания за
+                    ~5–7 секунд; дорабатываю UX и обработку ошибок.
                   </p>
                 </div>
                 <div className={style.Portfolio__actions}>
-                  <button type="button" className={style.Portfolio__button}>
+                  <Link to="/projects/learn-english" className={style.Portfolio__button}>
                     Подробнее
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -92,6 +93,9 @@ export default function Portfolio() {
                 <span>#React</span>
                 <span>#Redux</span>
               </div>
+              <Link to="/projects/ggpromarket" className={style.Portfolio__inlineLink}>
+                Подробнее →
+              </Link>
             </div>
           </article>
 
@@ -115,6 +119,9 @@ export default function Portfolio() {
                 <span>#HTML/SCSS</span>
                 <span>#Animation</span>
               </div>
+              <Link to="/projects/landing-collection" className={style.Portfolio__inlineLink}>
+                Подробнее →
+              </Link>
             </div>
           </article>
         </div>

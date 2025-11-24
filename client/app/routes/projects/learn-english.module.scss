@@ -1,0 +1,110 @@
+.ProjectPage {
+  min-height: 100vh;
+  background: #0f172a;
+  color: #e2e8f0;
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+.ProjectPage__hero {
+  position: relative;
+  padding: 96px 24px 56px;
+  background: radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.25), transparent 45%),
+    radial-gradient(circle at 80% 0%, rgba(34, 211, 238, 0.22), transparent 35%),
+    #0f172a;
+  border-bottom: 1px solid rgba(51, 65, 85, 0.6);
+}
+
+.ProjectPage__heroInner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ProjectPage__back {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(51, 65, 85, 0.7);
+  background: rgba(15, 23, 42, 0.7);
+  color: #bfdbfe;
+  text-decoration: none;
+  font-weight: 600;
+  transition: border 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    border-color: rgba(96, 165, 250, 0.6);
+    transform: translateY(-1px);
+  }
+}
+
+.ProjectPage__eyebrow {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ProjectPage__title {
+  margin: 0;
+  font-size: clamp(30px, 5vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #f8fafc;
+}
+
+.ProjectPage__lead {
+  margin: 0;
+  max-width: 780px;
+  color: #cbd5e1;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+.ProjectPage__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.ProjectPage__tag {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(51, 65, 85, 0.7);
+  color: #cbd5e1;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.ProjectPage__content {
+  padding: 36px 24px 64px;
+}
+
+.ProjectPage__body {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  gap: 16px;
+  background: rgba(11, 18, 32, 0.9);
+  border: 1px solid rgba(51, 65, 85, 0.7);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 600px) {
+  .ProjectPage__body {
+    padding: 18px;
+  }
+
+  .ProjectPage__hero {
+    padding-top: 80px;
+  }
+}

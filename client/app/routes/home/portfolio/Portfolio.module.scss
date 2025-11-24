@@ -221,6 +221,9 @@
   }
 
   &__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     border: none;
     background: linear-gradient(135deg, #2563eb, #1d4ed8);
     color: #fff;
@@ -230,6 +233,7 @@
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     box-shadow: 0 12px 28px rgba(37, 99, 235, 0.28);
+    text-decoration: none;
 
     &:hover {
       transform: translateY(-1px);
@@ -284,6 +288,21 @@
     color: #94a3b8;
     font-size: 12px;
     font-family: "Inter", system-ui, -apple-system, sans-serif;
+  }
+
+  &__inlineLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    color: #60a5fa;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #93c5fd;
+    }
   }
 
   @media (max-width: 1024px) {

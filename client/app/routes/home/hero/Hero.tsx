@@ -15,13 +15,12 @@ export default function Hero({ onNavigate }: HeroProps) {
   };
 
   return (
-    <section
-      id="hero"
-      ref={ref}
-      className={`${style.Hero} ${showed ? style.Hero_showed : ""}`}
-    >
+    <section id="hero" className={`${style.Hero}`}>
       <div className={style.Hero__background} />
-      <div className={style.Hero__container}>
+      <div
+        ref={ref}
+        className={`${style.Hero__container} ${showed ? style.Hero__container_showed : ""}`}
+      >
         <div className={style.Hero__badge}>
           <span className={style.Hero__pulse} />
           <span className={style.Hero__badgeText}>Открыт к заказам</span>
@@ -30,9 +29,7 @@ export default function Hero({ onNavigate }: HeroProps) {
         <h1 className={style.Hero__title}>
           Создаю веб-приложения
           <br className={style.Hero__break} />
-          <span className={style.Hero__accent}>
-            быстрее, чем вы ожидаете
-          </span>
+          <span className={style.Hero__accent}>быстрее, чем вы ожидаете</span>
         </h1>
 
         <p className={style.Hero__subtitle}>
