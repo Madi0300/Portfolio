@@ -34,6 +34,31 @@ npm run dev
 
 Your application will be available at `http://localhost:5173`.
 
+## Backend (contact relay)
+
+The `server` directory now contains a lightweight Express service that accepts `POST /api/contact`, validates the input, and forwards it to Telegram. The service sends a startup notification to the group, relays any server-side errors there, and accepts form submissions sent from the frontend.
+
+### Setup
+
+1. `cd server && npm install`
+2. Copy `.env.example` to `.env` and define:
+   - `TELEGRAM_BOT_TOKEN` — the token you got from @BotFather.
+   - `TELEGRAM_CHAT_ID` — the numeric identifier for your group (supergroups use IDs that start with `-100`). You can obtain it by messaging the group and visiting `https://api.telegram.org/bot<token>/getUpdates` or by asking @userinfobot once the bot is a member.
+   - `ALLOWED_ORIGINS` — comma-separated list of allowed front-end URLs (defaults to `http://localhost:5173`).
+
+### Running the backend
+
+```bash
+cd server
+npm start
+```
+
+The backend sends a startup message to your group so you always know when it launches.
+
+### Connecting the frontend
+
+The contact form uses `VITE_CONTACT_API_URL`. By default it points to `http://localhost:4000/api/contact`, but you can override it in your `.env` or deployment environment to match the backend URL the frontend should reach.
+
 ## Building for Production
 
 Create a production build:

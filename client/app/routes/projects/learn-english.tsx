@@ -1,7 +1,10 @@
 import type { Route } from "./+types/learn-english";
 import { Link } from "react-router";
-import ProjectContent, { type ProjectContentBlock } from "./renderer/ProjectContent";
+import ProjectContent, {
+  type ProjectContentBlock,
+} from "./renderer/ProjectContent";
 import style from "./learn-english.module.scss";
+import { useReveal } from "~/routes/home/useReveal";
 
 const contentBlocks: ProjectContentBlock[] = [
   { type: "title", text: "AI English Learning Platform" },
@@ -37,7 +40,8 @@ const contentBlocks: ProjectContentBlock[] = [
     type: "image",
     imgSrc: "/projectLearnEnglish/practices.png",
     alt: "Раздел практик и прогресса",
-    caption: "Экран практик: прогресс, активные карточки и быстрый старт новых заданий.",
+    caption:
+      "Экран практик: прогресс, активные карточки и быстрый старт новых заданий.",
   },
   {
     type: "subtitle",
@@ -61,18 +65,22 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function LearnEnglishProject() {
+  const { ref, showed } = useReveal<HTMLDivElement>();
   return (
-    <div className={style.ProjectPage}>
+    <div ref={ref} className={style.ProjectPage}>
       <header className={style.ProjectPage__hero}>
         <div className={style.ProjectPage__heroInner}>
           <Link to="/" className={style.ProjectPage__back}>
             ← На главную
           </Link>
           <p className={style.ProjectPage__eyebrow}>Проекты / EdTech</p>
-          <h1 className={style.ProjectPage__title}>AI English Learning Platform</h1>
+          <h1 className={style.ProjectPage__title}>
+            AI English Learning Platform
+          </h1>
           <p className={style.ProjectPage__lead}>
-            Пет-проект для экспериментов с генерацией упражнений: быстрый SPA, адаптив, кэширование ответов и модульная
-            архитектура, чтобы быстро обкатывать новые форматы практик.
+            Пет-проект для экспериментов с генерацией упражнений: быстрый SPA,
+            адаптив, кэширование ответов и модульная архитектура, чтобы быстро
+            обкатывать новые форматы практик.
           </p>
           <div className={style.ProjectPage__tags}>
             <span className={style.ProjectPage__tag}>React</span>
@@ -83,7 +91,13 @@ export default function LearnEnglishProject() {
         </div>
       </header>
 
-      <main className={style.ProjectPage__content}>
+      <main
+        className={
+          style.ProjectPage__content +
+          " " +
+          (showed ? style.ProjectPage__content_showed : "")
+        }
+      >
         <div className={style.ProjectPage__body}>
           <ProjectContent blocks={contentBlocks} />
         </div>

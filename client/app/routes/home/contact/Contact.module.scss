@@ -2,14 +2,6 @@
   padding: 96px 24px;
   background: linear-gradient(145deg, rgba(37, 99, 235, 0.12), #0f172a);
   color: #e2e8f0;
-  opacity: 0;
-  transform: translateY(10%);
-  transition: all 0.5s ease-in-out;
-
-  &_showed {
-    opacity: 1;
-    transform: translateY(0);
-  }
 
   &__container {
     max-width: 1200px;
@@ -19,6 +11,14 @@
     border-radius: 20px;
     padding: 24px;
     box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    transform: translateY(10%);
+    transition: all 0.5s ease-in-out;
+
+    &_showed {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   &__header {
@@ -142,6 +142,18 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
+  }
+
+  &__statusMessage {
+    margin: 4px 0 0;
+    font-size: 13px;
+    text-align: center;
+    min-height: 18px;
+    color: #f87171;
+  }
+
+  &__statusMessage_success {
+    color: #22c55e;
   }
 
   &__label {

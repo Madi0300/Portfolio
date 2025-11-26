@@ -23,11 +23,14 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Home() {
   const handleNavigate = useCallback((id: string) => {
-    if (typeof document === "undefined") return;
+    if (typeof window === "undefined" || typeof document === "undefined") return;
 
     const target = document.getElementById(id);
     if (target) {
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      const headerOffset = 65;
+      const y =
+        target.getBoundingClientRect().top + window.scrollY - headerOffset;
+      window.scrollTo({ top: Math.max(y, 0), behavior: "smooth" });
     }
   }, []);
 

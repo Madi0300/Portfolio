@@ -6,7 +6,7 @@ const points = [
   {
     icon: <Zap size={20} />,
     title: "Скорость x2-x3",
-    text: "Убираю рутину с помощью Gemini 2.5 и GPT-5 Thinking. Вы не платите за часы, потраченные на boilerplate.",
+    text: "Убираю рутину с помощью проверенных шаблонов и автоматических скриптов. Вы не платите за часы, потраченные на boilerplate.",
     tone: "blue",
   },
   {
@@ -29,10 +29,12 @@ export default function About() {
   return (
     <section
       id="about"
-      ref={ref}
-      className={`${style.About} ${showed ? style.About_showed : ""}`}
+      className={style.About}
     >
-      <div className={style.About__container}>
+      <div
+        ref={ref}
+        className={`${style.About__container} ${showed ? style.About__container_showed : ""}`}
+      >
         <div className={style.About__card}>
           <div className={style.About__cardHeader}>
             <Cpu className={style.About__cardIcon} />

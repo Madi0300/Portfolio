@@ -20,25 +20,24 @@ const stackItems = [
     tags: ["Node.js", "Express", "PostgreSQL", "SQLite", "Supabase"],
   },
   {
-    title: "AI Acceleration",
+    title: "Delivery Flow",
     description:
-      "Использую топовые нейросети для ускорения разработки в 2-3 раза.",
+      "Оптимизирую процессы деплоя, тестирования и мониторинга, чтобы команда быстрее доставляла стабильный софт.",
     icon: <Zap size={22} />,
     color: "purple",
-    tags: ["Gemini 2.5 Pro", "GPT-5 Thinking", "Deep Research", "Git"],
+    tags: ["CI/CD", "Automation", "Monitoring", "Git"],
   },
 ];
 
 export default function Stack() {
-  const { ref, showed } = useReveal<HTMLElement>();
+  const { ref, showed } = useReveal<HTMLDivElement>();
 
   return (
-    <section
-      id="stack"
-      ref={ref}
-      className={`${style.Stack} ${showed ? style.Stack_showed : ""}`}
-    >
-      <div className={style.Stack__container}>
+    <section id="stack" className={style.Stack}>
+      <div
+        ref={ref}
+        className={`${style.Stack__container} ${showed ? style.Stack__container_showed : ""}`}
+      >
         <div className={style.Stack__header}>
           <h2 className={style.Stack__title}>Технологии, которые работают на вас</h2>
           <p className={style.Stack__subtitle}>

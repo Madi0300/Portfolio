@@ -26,15 +26,14 @@ const services = [
 ];
 
 export default function Services() {
-  const { ref, showed } = useReveal<HTMLElement>();
+  const { ref, showed } = useReveal<HTMLDivElement>();
 
   return (
-    <section
-      id="services"
-      ref={ref}
-      className={`${style.Services} ${showed ? style.Services_showed : ""}`}
-    >
-      <div className={style.Services__container}>
+    <section id="services" className={style.Services}>
+      <div
+        ref={ref}
+        className={`${style.Services__container} ${showed ? style.Services__container_showed : ""}`}
+      >
         <h2 className={style.Services__title}>Чем я могу быть полезен</h2>
         <div className={style.Services__grid}>
           {services.map((service) => (

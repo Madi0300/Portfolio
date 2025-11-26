@@ -8,10 +8,11 @@ type HeroProps = {
 
 export default function Hero({ onNavigate }: HeroProps) {
   const { ref, showed } = useReveal<HTMLDivElement>();
+  const TELEGRAM_URL = "https://t.me/Mad_Aitbai";
 
   const handleTelegram = () => {
     if (typeof window === "undefined") return;
-    window.open("https://t.me/your_username", "_blank");
+    window.open(TELEGRAM_URL, "_blank");
   };
 
   return (
@@ -40,7 +41,7 @@ export default function Hero({ onNavigate }: HeroProps) {
         <p className={style.Hero__description}>
           Fullstack-разработчик. Объединяю{" "}
           <span className={style.Hero__highlight}>инженерную точность</span> и{" "}
-          <span className={style.Hero__highlight}>ИИ-инструменты</span>, чтобы
+          <span className={style.Hero__highlight}>чёткие процессы</span>, чтобы
           быстрее решать бизнес-задачи без потери качества.
         </p>
 

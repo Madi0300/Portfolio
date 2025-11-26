@@ -4,11 +4,19 @@ import { ArrowRight, CheckCircle, Mail, Phone, Send } from "lucide-react";
 import style from "./Contact.module.scss";
 import { useReveal } from "../useReveal";
 
-type FormStatus = "idle" | "sending" | "success";
+const DEFAULT_CONTACT_ENDPOINT = "http://localhost:4000/api/contact";
+const CONTACT_ENDPOINT =
+  import.meta.env.VITE_CONTACT_API_URL ?? DEFAULT_CONTACT_ENDPOINT;
+const TELEGRAM_URL = "https://t.me/Mad_Aitbai";
+const WHATSAPP_URL = "https://wa.me/77064184529";
+const EMAIL_ADDRESS = "madibro999@gmail.com";
+
+type FormStatus = "idle" | "sending" | "success" | "error";
 
 export default function Contact() {
-  const { ref, showed } = useReveal<HTMLElement>();
+  const { ref, showed } = useReveal<HTMLDivElement>();
   const [formStatus, setFormStatus] = useState<FormStatus>("idle");
+  const [formError, setFormError] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     contact: "",
@@ -18,8 +26,13 @@ export default function Contact() {
   useEffect(() => {
     let timeout: number | undefined;
 
-    if (formStatus === "success") {
-      timeout = window.setTimeout(() => setFormStatus("idle"), 2800);
+    if (formStatus === "success" || formStatus === "error") {
+      timeout = window.setTimeout(() => {
+        setFormStatus("idle");
+        if (formStatus === "error") {
+          setFormError("");
+        }
+      }, 2800);
     }
 
     return () => {
@@ -39,20 +52,46 @@ export default function Contact() {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setFormStatus("sending");
+    setFormError("");
 
-    window.setTimeout(() => {
-      setFormStatus("success");
-      setFormData({ name: "", contact: "", message: "" });
-    }, 1400);
+    const payload = {
+      name: formData.name.trim(),
+      contact: formData.contact.trim(),
+      message: formData.message.trim(),
+    };
+
+    fetch(CONTACT_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    })
+      .then(async (response) => {
+        const body = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+          throw new Error(body.error ?? "Не удалось отправить сообщение");
+        }
+
+        setFormStatus("success");
+        setFormData({ name: "", contact: "", message: "" });
+        setFormError("");
+      })
+      .catch((error) => {
+        const message =
+          error && error.message
+            ? error.message
+            : "Сервис временно недоступен. Попробуйте снова";
+        setFormError(message);
+        setFormStatus("error");
+      });
   };
 
   return (
-    <section
-      id="contact"
-      ref={ref}
-      className={`${style.Contact} ${showed ? style.Contact_showed : ""}`}
-    >
-      <div className={style.Contact__container}>
+    <section id="contact" className={style.Contact}>
+      <div
+        ref={ref}
+        className={`${style.Contact__container} ${showed ? style.Contact__container_showed : ""}`}
+      >
         <div className={style.Contact__header}>
           <h2 className={style.Contact__title}>
             Расскажите о проекте — дам варианты решения и примерный бюджет в течение 24 часов
@@ -66,7 +105,7 @@ export default function Contact() {
               <div className={style.Contact__options}>
                 <a
                   className={`${style.Contact__option} ${style.Contact__option_blue}`}
-                  href="https://t.me/your_username"
+                  href={TELEGRAM_URL}
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -75,13 +114,13 @@ export default function Contact() {
                   </div>
                   <div className={style.Contact__optionText}>
                     <span className={style.Contact__optionTitle}>Telegram</span>
-                    <span className={style.Contact__optionHint}>Самый быстрый ответ</span>
+                    <span className={style.Contact__optionHint}>@Mad_Aitbai</span>
                   </div>
                 </a>
 
                 <a
                   className={`${style.Contact__option} ${style.Contact__option_green}`}
-                  href="https://wa.me/77000000000"
+                  href={WHATSAPP_URL}
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -90,23 +129,25 @@ export default function Contact() {
                   </div>
                   <div className={style.Contact__optionText}>
                     <span className={style.Contact__optionTitle}>WhatsApp</span>
+                    <span className={style.Contact__optionHint}>+77064184529</span>
                   </div>
                 </a>
 
-                <a className={style.Contact__option} href="mailto:your.email@gmail.com">
+                <a className={style.Contact__option} href={`mailto:${EMAIL_ADDRESS}`}>
                   <div className={style.Contact__optionIcon}>
                     <Mail size={18} />
                   </div>
                   <div className={style.Contact__optionText}>
                     <span className={style.Contact__optionTitle}>Email</span>
+                    <span className={style.Contact__optionHint}>{EMAIL_ADDRESS}</span>
                   </div>
                 </a>
               </div>
             </div>
 
             <div className={style.Contact__note}>
-              "Не уверены в ТЗ? Напишите «Хочу консультацию» — созвонимся на 15 минут, и я помогу
-              сформулировать задачи."
+              "Не уверены в ТЗ? Напишите «Хочу консультацию» — разберём запрос быстро в переписке и я
+              предложу варианты решения."
             </div>
           </div>
 
@@ -160,9 +201,23 @@ export default function Contact() {
                 ? "Отправка..."
                 : formStatus === "success"
                   ? "Отправлено"
-                  : "Получить предложение"}
+                  : formStatus === "error"
+                    ? "Ошибка"
+                    : "Получить предложение"}
               {formStatus === "success" ? <CheckCircle size={18} /> : <ArrowRight size={18} />}
             </button>
+            <p
+              className={`${style.Contact__statusMessage} ${
+                formStatus === "success" ? style.Contact__statusMessage_success : ""
+              }`}
+              role="status"
+            >
+              {formStatus === "success"
+                ? "Спасибо! Я отвечу в течение суток."
+                : formStatus === "error"
+                  ? formError
+                  : ""}
+            </p>
           </form>
         </div>
       </div>

@@ -1,7 +1,10 @@
 import { Link } from "react-router";
 import type { Route } from "./+types/landing-collection";
-import ProjectContent, { type ProjectContentBlock } from "./renderer/ProjectContent";
+import ProjectContent, {
+  type ProjectContentBlock,
+} from "./renderer/ProjectContent";
 import style from "./landing-collection.module.scss";
+import { useReveal } from "~/routes/home/useReveal";
 
 const contentBlocks: ProjectContentBlock[] = [
   { type: "title", text: "Пет-проект: коллекция лендингов" },
@@ -17,7 +20,8 @@ const contentBlocks: ProjectContentBlock[] = [
     type: "image",
     imgSrc: "/projectLanding/Relvise.png",
     alt: "Лендинг Relvise",
-    caption: "Relvise — корпоративный лендинг, отрабатывал сетки и блоки доверия.",
+    caption:
+      "Relvise — корпоративный лендинг, отрабатывал сетки и блоки доверия.",
   },
   {
     type: "subtitle",
@@ -36,7 +40,8 @@ const contentBlocks: ProjectContentBlock[] = [
     type: "image",
     imgSrc: "/projectLanding/TealuxE.png",
     alt: "Лендинг TealuxE",
-    caption: "TealuxE — продуктовая страница, тренировал чистые CTA и карточки товара.",
+    caption:
+      "TealuxE — продуктовая страница, тренировал чистые CTA и карточки товара.",
   },
   {
     type: "list",
@@ -75,18 +80,21 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function LandingCollectionProject() {
+  const { ref, showed } = useReveal<HTMLDivElement>();
   return (
-    <div className={style.ProjectPage}>
+    <div ref={ref} className={style.ProjectPage}>
       <header className={style.ProjectPage__hero}>
         <div className={style.ProjectPage__heroInner}>
           <Link to="/" className={style.ProjectPage__back}>
             ← На главную
           </Link>
           <p className={style.ProjectPage__eyebrow}>Проекты / Лендосы</p>
-          <h1 className={style.ProjectPage__title}>Пет-проект: коллекция лендингов</h1>
+          <h1 className={style.ProjectPage__title}>
+            Пет-проект: коллекция лендингов
+          </h1>
           <p className={style.ProjectPage__lead}>
-            Три лендинга как тренировочная площадка: общие компоненты, аккуратные сетки, анимации и лёгкая загрузка на
-            мобильных.
+            Три лендинга как тренировочная площадка: общие компоненты,
+            аккуратные сетки, анимации и лёгкая загрузка на мобильных.
           </p>
           <div className={style.ProjectPage__tags}>
             <span className={style.ProjectPage__tag}>HTML/SCSS</span>
@@ -97,7 +105,13 @@ export default function LandingCollectionProject() {
         </div>
       </header>
 
-      <main className={style.ProjectPage__content}>
+      <main
+        className={
+          style.ProjectPage__content +
+          " " +
+          (showed ? style.ProjectPage__content_showed : "")
+        }
+      >
         <div className={style.ProjectPage__body}>
           <ProjectContent blocks={contentBlocks} />
         </div>
