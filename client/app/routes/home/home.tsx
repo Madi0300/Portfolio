@@ -7,7 +7,7 @@ import About from "./about/About";
 import Stack from "./stack/Stack";
 import Services from "./services/Services";
 import Portfolio from "./portfolio/Portfolio";
-import Contact from "./contact/Contact";
+import KworkLink from "./kwork-link/KworkLink";
 import Footer from "./footer/Footer";
 
 export function meta({}: Route.MetaArgs) {
@@ -43,7 +43,7 @@ export default function Home() {
         <Stack />
         <Services />
         <Portfolio />
-        <Contact />
+        <KworkLink />
       </main>
       <Footer />
     </div>

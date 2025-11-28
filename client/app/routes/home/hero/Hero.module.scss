@@ -129,6 +129,23 @@
     margin-top: 6px;
   }
 
+  &__kworkIcon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px;
+    border-radius: 14px;
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    box-shadow: 0 18px 32px rgba(0, 0, 0, 0.22);
+
+    img {
+      height: 20px;
+      width: auto;
+      display: block;
+    }
+  }
+
   &__primary {
     display: inline-flex;
     align-items: center;

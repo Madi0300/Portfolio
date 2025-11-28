@@ -1,5 +1,6 @@
-import { ArrowRight, Send } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import style from "./Hero.module.scss";
+import { KworkIcon } from "@/app/routes/home/KworkButton";
 import { useReveal } from "../useReveal";
 
 type HeroProps = {
@@ -8,12 +9,12 @@ type HeroProps = {
 
 export default function Hero({ onNavigate }: HeroProps) {
   const { ref, showed } = useReveal<HTMLDivElement>();
-  const TELEGRAM_URL = "https://t.me/Mad_Aitbai";
+  // const TELEGRAM_URL = "https://t.me/Mad_Aitbai";
 
-  const handleTelegram = () => {
-    if (typeof window === "undefined") return;
-    window.open(TELEGRAM_URL, "_blank");
-  };
+  // const handleTelegram = () => {
+  //   if (typeof window === "undefined") return;
+  //   window.open(TELEGRAM_URL, "_blank");
+  // };
 
   return (
     <section id="hero" className={`${style.Hero}`}>
@@ -46,14 +47,17 @@ export default function Hero({ onNavigate }: HeroProps) {
         </p>
 
         <div className={style.Hero__actions}>
-          <button
+          <div className={style.Hero__kworkIcon}>
+            <KworkIcon />
+          </div>
+          {/* <button
             type="button"
             className={style.Hero__primary}
             onClick={handleTelegram}
           >
             <Send size={18} />
             Написать в Telegram
-          </button>
+          </button> */}
           <button
             type="button"
             className={style.Hero__secondary}
