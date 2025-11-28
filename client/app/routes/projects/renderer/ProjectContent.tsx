@@ -13,6 +13,13 @@ type ProjectContentProps = {
   blocks: ProjectContentBlock[];
 };
 
+const buildAssetSrc = (src: string) => {
+  if (src.startsWith("http://") || src.startsWith("https://") || src.startsWith("data:")) {
+    return src;
+  }
+  return `${import.meta.env.BASE_URL}${src.replace(/^\/+/, "")}`;
+};
+
 export default function ProjectContent({ blocks }: ProjectContentProps) {
   return (
     <div className={style.ProjectContent}>
@@ -81,12 +88,13 @@ export default function ProjectContent({ blocks }: ProjectContentProps) {
         }
 
         if (block.type === "image") {
+          const imageSrc = buildAssetSrc(block.imgSrc);
           return (
             <figure key={index} className={style.ProjectContent__figure}>
               <img
                 loading="lazy"
                 className={style.ProjectContent__image}
-                src={block.imgSrc}
+                src={imageSrc}
                 alt={block.alt ?? ""}
               />
               {block.caption ? (

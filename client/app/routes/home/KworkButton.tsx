@@ -1,7 +1,6 @@
 import styles from "./KworkButton.module.scss";
 
 const DEFAULT_KWORK_URL = "https://kwork.ru/user/madi_aitbai";
-const KWORK_LOGO_SRC = "/kwork/kwork-logo.svg";
 
 export const KWORK_URL =
   import.meta.env.VITE_KWORK_URL ?? DEFAULT_KWORK_URL;
@@ -16,7 +15,7 @@ type KworkButtonProps = {
 export function KworkIcon({ className = "" }: { className?: string }) {
   return (
     <img
-      src={KWORK_LOGO_SRC}
+      src={`${import.meta.env.BASE_URL}kwork/kwork-logo.svg`}
       alt="Kwork"
       width={108}
       height={20}

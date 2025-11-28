@@ -65,6 +65,7 @@ const projectCards: ProjectCard[] = [
 
 export default function Portfolio() {
   const { ref, showed } = useReveal<HTMLDivElement>();
+  const featuredImageSrc = `${import.meta.env.BASE_URL}${featuredProject.imageSrc.replace(/^\/+/, "")}`;
 
   return (
     <section id="portfolio" className={style.Portfolio}>
@@ -100,7 +101,7 @@ export default function Portfolio() {
             <div className={style.Portfolio__featuredBody}>
               <div className={style.Portfolio__visual}>
                 <img
-                  src={featuredProject.imageSrc}
+                  src={featuredImageSrc}
                   alt={featuredProject.title}
                   className={style.Portfolio__visualImage}
                 />
@@ -146,11 +147,13 @@ export default function Portfolio() {
           {projectCards.map((project) => {
             const ResultIcon = project.resultIcon;
 
+            const projectImageSrc = `${import.meta.env.BASE_URL}${project.imageSrc.replace(/^\/+/, "")}`;
+
             return (
               <article key={project.title} className={style.Portfolio__card}>
                 <div className={style.Portfolio__thumb}>
                   <img
-                    src={project.imageSrc}
+                    src={projectImageSrc}
                     alt={project.title}
                     className={style.Portfolio__thumbImage}
                   />

@@ -43,7 +43,7 @@ export default function Navigation({ onNavigate }: NavigationProps) {
         >
           <span className={style.Navigation__badge}>
             <img
-              src="/avatar/avatar.webp"
+              src={`${import.meta.env.BASE_URL}avatar/avatar.webp`}
               alt="Madi Aitbay"
               loading="lazy"
               decoding="async"
